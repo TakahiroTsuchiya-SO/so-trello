@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+    nginx-trello:
+        container_name: nginx-trello
+        build: ./docker/web/
+        ports:
+            - '800:88'
+        volumes:
+            - ./src/:/var/www/
+            - ./docker/web/nginx.conf:/etc/nginx/nginx.conf
+        links:
+            - app-trello
+        # networks:
+        #     app_net:
+        #         ipv4_address: 172.0.11.1
+
+    app-trello:
+        container_name: app-trello
+        build: ./docker/php/
+        # command: php-fpm -F
+        command: /sbin/init
+        privileged: true
+        restart: always
+        expose:
+            - "9000"
+        volumes:
+            - ./src/:/var/www/
+            - ./docker/php/php.ini:/etc/php/7.4/fpm/php.ini
+            - ./docker/php/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+        # networks:
+        #     app_net:
+        #         ipv4_address: 172.0.11.2
+
+# networks:
+#     app_net:
+#         driver: bridge
+#         ipam:
+#             config:
+#             - subnet: 172.0.11.0/24
+
+    # mysql:
+    #     container_name:
