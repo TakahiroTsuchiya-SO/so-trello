@@ -14,8 +14,17 @@ class CreateCategoryTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->unsignedInteger('project_id');
+            $table->string('title', 50);
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('project_id')
+                  ->references('id')
+                  ->on('projects')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

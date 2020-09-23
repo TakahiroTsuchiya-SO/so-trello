@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Project extends Model
+class Category extends Model
 {
     use SoftDeletes;
-    public function categories()
+
+    public function tasks()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Task::class);
     }
 }
