@@ -12,4 +12,9 @@ class Project extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

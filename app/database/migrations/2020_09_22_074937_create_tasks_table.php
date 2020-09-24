@@ -18,9 +18,9 @@ class CreateTasksTable extends Migration
             $table->unsignedInteger('category_id');
             $table->string('title', 100);
             $table->date('due_date');
-            $table->timestamps();
             $table->string('owner', 20);
             $table->string('worker', 20);
+            $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('category_id')

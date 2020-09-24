@@ -13,4 +13,9 @@ class Category extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function projects()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }
