@@ -22,14 +22,14 @@
 
             </nav>
         </header>
-        <div id= "wrapper">
+        <div id= "wrapper" class="pt-4">
         <main>
             @yield('content')
         </main>
         </div>
         <footer>
         <div class="container">
-            <p class="text-muted">Place sticky footer content here.</p>
+            <p class="text-muted">so-trello</p>
         </div>
         </footer>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
