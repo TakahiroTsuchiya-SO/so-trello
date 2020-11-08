@@ -11,11 +11,11 @@ class Category extends Model
 
     public function tasks()
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany('App\Models\Task');
     }
 
     public function projects()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo('App\Models\Project');
     }
 }
