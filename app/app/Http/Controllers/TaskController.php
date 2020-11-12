@@ -21,7 +21,6 @@ class TaskController extends Controller
                      ->tasks()
                      ->get();
         }
-
         return view('tasks/index', [
             'project' => $project,
             'tasks'   => $tasks,

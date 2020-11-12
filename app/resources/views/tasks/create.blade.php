@@ -19,10 +19,10 @@
             <div class="form-group">
               <label for="category_id">カテゴリーを選択する</label>
                 <select
-                    id="category_id"
-                    name="category_id"
-                    class="form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
-                    value="{{ old('category_id') }}"
+                    id    = "category_id"
+                    name  = "category_id"
+                    class = "form-control {{ $errors->has('category_id') ? 'is-invalid' : '' }}"
+                    value = "{{ old('category_id') }}"
                     >
                         @foreach($categories as $id => $name)
                             <option value="{{ $id }}">{{ $name }}</option>
