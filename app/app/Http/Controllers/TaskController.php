@@ -13,26 +13,34 @@ class TaskController extends Controller
 {
     public function index(Project $project)
     {
-        $categories = $project
-                    ->categories()
-                    ->get();
-        foreach ($categories as $category) {
-            $tasks[] = $category
-                     ->tasks()
-                     ->get();
-        }
+        $categories     = Auth::user()->with('projects')->get();
+        dd($categories);
+        $tasks = $project->with('categories.tasks')->get();
+        // foreach ($categories as $category) {
+        //     $tasks[]    = $category
+        //                 ->tasks()
+        //                 ->get();
+        // }
+        dd($tasks);
+
+        $categoryJson = json_encode($categories);
+        $taskJson       = json_encode($tasks);
+
         return view('tasks/index', [
-            'project' => $project,
-            'tasks'   => $tasks,
+            'project'       => $project,
+            'tasks'         => $tasks,
+            'categories'    => $categories,
+            'categoryJson'  => $categoryJson,
+            'taskJson'      => $taskJson,
         ]);
     }
 
     public function create(Project $project)
     {
         $categories = $project
-                    ->categories()
-                    ->pluck('title', 'id')
-                    ->prepend('カテゴリーを選択する', '');
+            ->categories()
+            ->pluck('title', 'id')
+            ->prepend('カテゴリーを選択する', '');
         return view('tasks/create', [
             'categories' => $categories,
             'project'    => $project,

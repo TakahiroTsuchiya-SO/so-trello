@@ -12,7 +12,6 @@
                     <div class="card" style="width: 200px;">
                         <div class="card-body">
                             <h5 class="card-title">
-
                             </h5>
                         </div>
                     </div>
@@ -23,12 +22,17 @@
             @endforeach
         </div>
         <div class="row">
-        @{{ hello }}
-        <draggable :list="items" class="dragarea">
-    <div v-for="item in items" class="item">
-      @{{item.text}}
-    </div>
-  </draggable>
+            <draggable :list="categoryJson" class="dragarea">
+                <div v-for="category in categoryJson" class="category">
+                    @{{category.title}}
+                </div>
+            </draggable>
+
+            <draggable :list="taskJson" class="dragarea">
+                <div v-for="task in taskJson" class="task">
+                    @{{task.title}}
+                </div>
+            </draggable>
         </div>
     </div>
 @endsection
@@ -38,20 +42,9 @@
   new Vue({
       el: "#app",
       data: {
-        hello: 'hello world!!!!',
-
-        items: [{
-        text: 'list1'
-        }, {
-        text: 'list2'
-        }, {
-        text: 'list3'
-        }, {
-        text: 'list4'
-        }, {
-        text: 'list5'
-        }, ]
-      },
+        categoryJson: JSON.parse(`{!! $categoryJson !!}`),
+        taskJson: JSON.parse(`{!! $taskJson !!}`),
+      }
   })
 </script>
 @endsection

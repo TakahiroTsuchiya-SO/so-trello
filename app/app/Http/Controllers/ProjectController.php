@@ -6,14 +6,14 @@ use App\Models\User;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProject;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
     public function create()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         return view('projects.create', [
             'user' => $user
         ]);
@@ -28,25 +28,25 @@ class ProjectController extends Controller
 
     public function store(Request $request, Project $project)
     {
-        $this->validate($request, [
-            'file' => [
-                'required',
-                'file',
-                'image',
-                'mimes:jpeg,png',
-            ]
-        ]);
+        // $this->validate($request, [
+        //     'file' => [
+        //         'required',
+        //         'file',
+        //         'image',
+        //         'mimes:jpeg,png',
+        //     ]
+        // ]);
 
-        $user    = auth()->user();
+        $user    = Auth::user();
         $project = new Project();
 
         $project->title     = $request->title;
         $project->user_id   = $user->id;
 
-        if ($request->file('file')->isValid([])) {
-            $path = $request->file('file')->store('public');
-            $project->project_image = basename($path);
-        }
+        // if ($request->file('file')->isValid([])) {
+        //     $path = $request->file('file')->store('public');
+        //     $project->project_image = basename($path);
+        // }
         // $file = time() . $request->file->getClientOriginalName();
         // $path = public_path('uploads/');
         // $request->file->move($path, $file);
@@ -72,7 +72,8 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::all();
+        $user   = Auth::user();
+        $projects = $user->projects;
 
         return view('projects/index', [
             'projects' => $projects,

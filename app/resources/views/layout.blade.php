@@ -31,7 +31,7 @@
     <body>
         <header>
             <nav class="navbar">
-            <a class="navbar-brand" href="/">ToDo App</a>
+            <a class="navbar-brand" href="/">SO Trello</a>
 
             </nav>
         </header>

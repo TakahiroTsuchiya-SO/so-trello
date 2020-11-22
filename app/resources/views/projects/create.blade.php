@@ -10,7 +10,7 @@
     <div class="card">
         <div class="card-header">Projectを作成する</div>
         <div class="card-body">
-        <form method="POST" action="{{ route('projects.store') }}"　enctype="multipart/form-data">
+        <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>
