@@ -79,4 +79,10 @@ class ProjectController extends Controller
             'projects' => $projects,
         ]);
     }
+
+    public function destroy($id)
+    {
+        Project::find($id)->delete();
+        return redirect('projects');
+    }
 }

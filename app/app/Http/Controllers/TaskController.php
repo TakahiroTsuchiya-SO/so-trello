@@ -13,8 +13,8 @@ class TaskController extends Controller
 {
     public function index(Project $project)
     {
-        $categories     = Auth::user()->with('projects')->get();
-        dd($categories);
+        $user = Auth::user();
+        $categories     = $project->categories()->get();
         $tasks = $project->with('categories.tasks')->get();
         // foreach ($categories as $category) {
         //     $tasks[]    = $category

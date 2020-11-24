@@ -25,6 +25,9 @@
                                     {{ $project->title }}
                                 </a>
                             </h5>
+                            <a href="{{ route('projects.destroy', [$project->id]) }}" class="btn btn-primary">
+                                削除
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +35,7 @@
         </div>
         <div class="row">
             <button class="btn">
-            <a href="{{ url('projects/create') }}" class="btn btn-md btn-primary">プロジェクトを追加する</a>
+            <a href="{{ route('projects.create') }}" class="btn btn-md btn-primary">プロジェクトを追加する</a>
             </button>
         </div>
     </div>
