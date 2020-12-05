@@ -9,6 +9,6 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('/projects', 'ProjectController', ['only' => ['index', 'create', 'store', 'edit', 'update']]);
-    Route::get('projects/{project}', 'ProjectController@destroy')->name('projects.destroy');
+    Route::post('projects/{project}', 'ProjectController@delete')->name('projects.delete');
     Route::resource('/projects/{project}/tasks', 'TaskController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 });

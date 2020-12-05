@@ -25,9 +25,10 @@
                                     {{ $project->title }}
                                 </a>
                             </h5>
-                            <a href="{{ route('projects.destroy', [$project->id]) }}" class="btn btn-primary">
-                                削除
-                            </a>
+                            <form action="{{ route('projects.delete', [$project->id]) }}" method="post">
+                            @csrf
+                            <input type="submit" value="削除" class="btn btn-primary" onclick='return confirm("本当に削除しますか？");'>
+                            </form>
                         </div>
                     </div>
                 </div>

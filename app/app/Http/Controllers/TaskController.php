@@ -13,18 +13,17 @@ class TaskController extends Controller
 {
     public function index(Project $project)
     {
-        $user = Auth::user();
-        $categories     = $project->categories()->get();
-        $tasks = $project->with('categories.tasks')->get();
-        // foreach ($categories as $category) {
-        //     $tasks[]    = $category
-        //                 ->tasks()
-        //                 ->get();
-        // }
-        dd($tasks);
+        $project        ->load('categories.tasks');
+        $categories     = $project
+                        ->categories;
+        foreach ($categories as $category) {
+            $tasks[]    = $category
+                        ->tasks;
+        }
 
-        $categoryJson = json_encode($categories);
+        $categoryJson   = json_encode($categories);
         $taskJson       = json_encode($tasks);
+        dd($categoryJson);
 
         return view('tasks/index', [
             'project'       => $project,

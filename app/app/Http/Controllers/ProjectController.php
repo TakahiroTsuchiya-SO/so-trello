@@ -72,15 +72,19 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $user   = Auth::user();
-        $projects = $user->projects;
-
+        $projects = Project::all();
+        // with("categories.tasks")
+        //           ->get();
+        // foreach($projects as $project){
+        //     $categories = $project->categories;
+        // }
+        // dd($projects);
         return view('projects/index', [
             'projects' => $projects,
         ]);
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
         Project::find($id)->delete();
         return redirect('projects');

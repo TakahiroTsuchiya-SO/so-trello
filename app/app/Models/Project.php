@@ -17,4 +17,13 @@ class Project extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($project){
+            $project
+            ->categories()
+            ->delete();
+        });
+    }
 }

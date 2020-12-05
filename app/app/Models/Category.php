@@ -18,4 +18,13 @@ class Category extends Model
     {
         return $this->belongsTo('App\Models\Project');
     }
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($category){
+            $category
+            ->tasks()
+            ->delete();
+        });
+    }
 }
