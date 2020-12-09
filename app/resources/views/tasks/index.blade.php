@@ -7,7 +7,7 @@
 @section('content')
     <div class="container" id="app">
         <div class="row">
-            @foreach($tasks as $task)
+            @foreach($categories as $category)
                 <div class="col-4">
                     <div class="card" style="width: 200px;">
                         <div class="card-body">

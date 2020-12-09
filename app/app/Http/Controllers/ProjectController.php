@@ -36,7 +36,6 @@ class ProjectController extends Controller
         //         'mimes:jpeg,png',
         //     ]
         // ]);
-
         $user    = Auth::user();
         $project = new Project();
 
@@ -73,12 +72,6 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        // with("categories.tasks")
-        //           ->get();
-        // foreach($projects as $project){
-        //     $categories = $project->categories;
-        // }
-        // dd($projects);
         return view('projects/index', [
             'projects' => $projects,
         ]);

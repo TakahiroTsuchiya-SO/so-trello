@@ -14,16 +14,26 @@ class TaskController extends Controller
     public function index(Project $project)
     {
         $project        ->load('categories.tasks');
+
         $categories     = $project
                         ->categories;
-        foreach ($categories as $category) {
-            $tasks[]    = $category
-                        ->tasks;
-        }
+        $tasks          = $project
+                        ->categories
+                        ->map(
+                            static function ($category) {
+                                return $category
+                                    ->tasks
+                                    ->map(
+                                        static function ($task) {
+                                            return $task;
+                                        }
+                                    );
+                            }
+                        )
+                        ->flatten();
 
         $categoryJson   = json_encode($categories);
         $taskJson       = json_encode($tasks);
-        dd($categoryJson);
 
         return view('tasks/index', [
             'project'       => $project,
