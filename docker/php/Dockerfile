@@ -4,10 +4,23 @@ RUN apt-get update && apt-get install -y init && apt-get clean all
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
-    && apt-get install -y curl vim git
+    && apt-get install -y curl \
+    vim \
+    git \
+    sudo \
+    php-pear
 
-RUN apt-get install -y php7.4 php7.4-fpm php7.4-mysql php7.4-mbstring php7.4-zip php7.4-bcmath php7.4-xml
+RUN apt-get install -y \
+php7.4-fpm \
+php7.4-mysql \
+php7.4-mbstring \
+php7.4-zip \
+php7.4-bcmath \
+php7.4-xml \
+php7.4-dev
+
 RUN mkdir -p /run/php7.4-fpm
+# RUN sudo apt-get install php7.4-xdebug
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer

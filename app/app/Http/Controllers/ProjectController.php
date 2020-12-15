@@ -28,45 +28,26 @@ class ProjectController extends Controller
 
     public function store(Request $request, Project $project)
     {
-        // $this->validate($request, [
-        //     'file' => [
-        //         'required',
-        //         'file',
-        //         'image',
-        //         'mimes:jpeg,png',
-        //     ]
-        // ]);
+        $this->validate($request, [
+            'file' => [
+                'required',
+                'file',
+                'image',
+                'mimes:jpeg,png',
+            ]
+        ]);
         $user    = Auth::user();
         $project = new Project();
 
-        $project->title     = $request->title;
-        $project->user_id   = $user->id;
-
-        // if ($request->file('file')->isValid([])) {
-        //     $path = $request->file('file')->store('public');
-        //     $project->project_image = basename($path);
-        // }
-        // $file = time() . $request->file->getClientOriginalName();
-        // $path = public_path('uploads/');
-        // $request->file->move($path, $file);
-            // $path = $file->store('public/image');
-            // $project->project_image = basename($path);
+        if ($request->file('file')->isValid([])) {
+        $path = $request->file('file')->store('public/img');
+        }
+        $project->project_image = basename($path);
+        $project->title         = $request->title;
+        $project->user_id       = $user->id;
 
         $project->save();
         return redirect('projects');
-        // $user = auth()->user();
-        // $data = $request->all();
-        // if ($request->file('project_image')->isValid([])) {
-        //     $path = $request->project_image->store('public/image');
-        //     $data['project_image'] = basename($path);
-        // }
-        // $validator = Validator::make($data, [
-        //     'title' => ['required', 'string', 'max:50']
-        // ]);
-        // $validator->validate();
-        // $project->projectStore($user->id, $data);
-
-        // return redirect('projects');
     }
 
     public function index()

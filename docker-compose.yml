@@ -18,14 +18,14 @@ services:
         command: /sbin/init
         privileged: true
         restart: always
-        expose:
-            - "9000"
         links:
             - db-trello
         volumes:
             - ./app/:/var/www/
             - ./docker/php/php.ini:/etc/php/7.4/fpm/php.ini
+            - ./docker/php/php.ini:/etc/php/7.4/cli/php.ini
             - ./docker/php/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+            - ./log/xdebug:/var/log
 
     db-trello:
         image: mysql:8.0
