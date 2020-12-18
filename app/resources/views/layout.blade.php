@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>so-trello</title>
+        <title>SO trello</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,12 +14,6 @@
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
         <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-        <script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
     </head>
         @yield('styles')
         @if(app('env') == 'production')
@@ -87,6 +81,7 @@
         </footer>
         </div>
         @yield('scripts')
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 
 </html>
