@@ -32,15 +32,10 @@ class TaskController extends Controller
                         )
                         ->flatten();
 
-        $categoryJson   = json_encode($categories);
-        $taskJson       = json_encode($tasks);
-
         return view('tasks/index', [
             'project'       => $project,
             'tasks'         => $tasks,
             'categories'    => $categories,
-            'categoryJson'  => $categoryJson,
-            'taskJson'      => $taskJson,
         ]);
     }
 
